@@ -1,5 +1,5 @@
-name: '🚑 Report a crash or a hang'
-description: ElevenClock is not launching, is hard-crashing or is hanging at some point.
+name: "🚑 Report a crash or a hang"
+description: ElevenCalendar is not launching, is hard-crashing or is hanging at some point.
 title: "[CRASH] (Enter your description here)"
 labels: ["bug", "important", "triage"]
 assignees: marticliment
@@ -9,11 +9,11 @@ body:
       label: Please confirm these before moving forward
       description: Please confirm the following before posting your issue.
       options:
-        - label: I have tried reinstalling ElevenClock
+        - label: I have tried reinstalling ElevenCalendar
           required: true
-        - label: I have tried resetting ElevenClock by reinstalling it and selecting the "Clean Install" option.
+        - label: I have tried resetting ElevenCalendar by reinstalling it and selecting the "Clean Install" option.
           required: true
-        - label: I have tested that this issue has not been fixed in the latest [(beta or stable) release](https://github.com/marticliment/ElevenClock/releases/).
+        - label: I have tested that this issue has not been fixed in the latest [(beta or stable) release](https://github.com/marticliment/ElevenCalendar/releases/).
           required: true
   - type: textarea
     attributes:

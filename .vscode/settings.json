@@ -1,9 +1,4 @@
 {
-    "python.analysis.extraPaths": [
-        "./elevenclock",
-        "./elevenclock/lang"
-    ],
-    "cSpell.enableFiletypes": [
-        "!python"
-    ]
+  "python.analysis.extraPaths": ["./elevencalendar", "./elevencalendar/lang"],
+  "cSpell.enableFiletypes": ["!python"]
 }

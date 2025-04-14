@@ -8,7 +8,7 @@ except ImportError:
     import requests
 
 
-__project_id = 688 # elevenclock
+__project_id = 688  # elevencalendar
 __api_url = f"https://app.tolgee.io/v2/projects/{__project_id}"
 __api_key = ""
 __headers: dict[str, str] = {}
@@ -28,7 +28,7 @@ except FileNotFoundError:
 __headers["X-API-Key"] = __api_key
 
 
-def export(format = "JSON", zip = True, langs: list[str] = []):
+def export(format="JSON", zip=True, langs: list[str] = []):
     url = f"{__api_url}/export"
     params = {
         "format": format,
@@ -60,7 +60,7 @@ def get_keys():
         return __all_keys
     url = f"{__api_url}/keys"
     params = {
-        "size": 1000, # TODO: paging...
+        "size": 1000,  # TODO: paging...
     }
     response = requests.get(url, headers=__headers, params=params)
     if not response.ok:

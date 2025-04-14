@@ -1,11 +1,11 @@
 import sys
 import os
 
-os.chdir(os.path.dirname(__file__) + "/..") # move to root project
+os.chdir(os.path.dirname(__file__) + "/..")  # move to root project
 
 try:
 
-    sys.path.append("elevenclock")
+    sys.path.append("elevencalendar")
 
     from versions import *
 
@@ -26,13 +26,12 @@ try:
         f.truncate()
         f.close()
 
-
-    fileReplaceLinesWith("ElevenClock.iss", {
+    fileReplaceLinesWith("ElevenCalendar.iss", {
         "#define MyAppVersion": f" \"{versionName}\"\n",
         "VersionInfoVersion=": f"{versionISS}\n",
-    }, encoding = "utf-8-sig")
+    }, encoding="utf-8-sig")
 
-    fileReplaceLinesWith("elevenclock-version-info", {
+    fileReplaceLinesWith("elevencalendar-version-info", {
         "      StringStruct(u'FileVersion'": f", u'{versionName}'),\n",
         "      StringStruct(u'ProductVersion'": f", u'{versionName}'),\n",
     })

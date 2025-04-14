@@ -44,9 +44,9 @@ if %errorlevel% neq 0 (
 
 %py% scripts/apply_versions.py
 
-rmdir /Q /S ElevenClockBin
-xcopy elevenclock elevenclock_bin /E /H /C /I /Y
-pushd elevenclock_bin
+rmdir /Q /S ElevenCalendarBin
+xcopy elevencalendar elevencalendar_bin /E /H /C /I /Y
+pushd elevencalendar_bin
 
 %py% -m compileall -b .
 if %errorlevel% neq 0 goto:error
@@ -57,20 +57,20 @@ rmdir /Q /S build
 rmdir /Q /S dist
 rmdir /Q /S external\__pycache__
 rmdir /Q /S lang\__pycache__
-copy ..\elevenclock\__init__.py .\
+copy ..\elevencalendar\__init__.py .\
 
-%py% -m PyInstaller elevenclock.spec
+%py% -m PyInstaller elevencalendar.spec
 if %errorlevel% neq 0 goto:error
 
 timeout 2
 
-move dist\ElevenClock ..\ElevenClockBin
+move dist\ElevenCalendar ..\ElevenCalendarBin
 if %errorlevel% neq 0 goto:error
 popd
 
-rmdir /Q /S elevenclock_bin
+rmdir /Q /S elevencalendar_bin
 
-pushd ElevenClockBin\PySide6
+pushd ElevenCalendarBin\PySide6
 del opengl32sw.dll
 del Qt6Network.dll
 del Qt6OpenGL.dll
@@ -82,15 +82,15 @@ del Qt6VirtualKeyboard.dll
 del QtNetwork.pyd
 popd
 
-pushd ElevenClockBin\tcl
+pushd ElevenCalendarBin\tcl
 rmdir /Q /S tzdata
 popd
 
-pushd ElevenClockBin\lang
+pushd ElevenCalendarBin\lang
 del download_translations.pyc
 popd
 
-pushd ElevenClockBin\PySide6\plugins\imageformats
+pushd ElevenCalendarBin\PySide6\plugins\imageformats
 move qico.dll filetomaintain
 del *.dll
 move filetomaintain qico.dll
@@ -106,12 +106,12 @@ pause
 
 set INSTALLATOR="%SYSTEMDRIVE%\Program Files (x86)\Inno Setup 6\ISCC.exe"
 if exist %INSTALLATOR% (
-    %INSTALLATOR% "ElevenClock.iss"
-    ElevenClock.Installer.exe
+    %INSTALLATOR% "ElevenCalendar.iss"
+    ElevenCalendar.Installer.exe
 ) else (
     echo Make installer is skipped, because installator missing.
     echo Running app...
-    start /b ElevenClockBin/ElevenClock.exe
+    start /b ElevenCalendarBin/ElevenCalendar.exe
 )
 
 echo You might want to sign your installer now

@@ -1,9 +1,9 @@
 import json
 import os
 
-project_dir = "elevenclock"
+project_dir = "elevencalendar"
 root_dir = os.path.join(os.path.dirname(__file__), "..")
-os.chdir(root_dir) # move to root project
+os.chdir(root_dir)  # move to root project
 
 print("Getting contributors...")
 
@@ -13,7 +13,8 @@ except ImportError:
     os.system("pip install requests")
     import requests
 
-response = requests.get("https://api.github.com/repos/marticliment/ElevenClock/contributors?anon=1")
+response = requests.get(
+    "https://api.github.com/repos/marticliment/ElevenCalendar/contributors?anon=1")
 
 contributors = []
 contributorsInfo = []
@@ -36,7 +37,8 @@ contributors = {json.dumps(contributors, indent=2, ensure_ascii=False)}
 contributorsInfo = {json.dumps(contributorsInfo, indent=2, ensure_ascii=False)}
 """
 
-contributors_filepath = os.path.normpath(os.path.join(root_dir, project_dir, "data/contributors.py"))
+contributors_filepath = os.path.normpath(
+    os.path.join(root_dir, project_dir, "data/contributors.py"))
 with open(contributors_filepath, "w", encoding="utf-8") as f:
     f.write(output.strip())
 

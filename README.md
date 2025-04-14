@@ -1,25 +1,25 @@
- <h1><img height=40 src="https://github.com/marticliment/ElevenClock/blob/main/elevenclock/resources/icon.png?raw=true"> ElevenClock</h1>
+ <h1><img height=40 src="https://github.com/marticliment/ElevenCalendar/blob/main/elevencalendar/resources/icon.png?raw=true"> ElevenCalendar</h1>
 
-[![Downloads@4.4.1.1](https://img.shields.io/github/downloads/marticliment/elevenclock/4.4.1.1/total?style=for-the-badge)](https://github.com/martinet101/ElevenClock/releases/latest/download/ElevenClock.Installer.exe)
-[![Release Version Badge](https://img.shields.io/github/v/release/martinet101/ElevenClock?style=for-the-badge)](https://github.com/martinet101/ElevenClock/releases)
-[![Issues Badge](https://img.shields.io/github/issues/martinet101/ElevenClock?style=for-the-badge)](https://github.com/martinet101/ElevenClock/issues)
-[![Closed Issues Badge](https://img.shields.io/github/issues-closed/martinet101/ElevenClock?color=%238256d0&style=for-the-badge)](https://github.com/martinet101/ElevenClock/issues?q=is%3Aissue+is%3Aclosed)
+[![Downloads@4.4.1.1](https://img.shields.io/github/downloads/marticliment/elevencalendar/4.4.1.1/total?style=for-the-badge)](https://github.com/martinet101/ElevenCalendar/releases/latest/download/ElevenCalendar.Installer.exe)
+[![Release Version Badge](https://img.shields.io/github/v/release/martinet101/ElevenCalendar?style=for-the-badge)](https://github.com/martinet101/ElevenCalendar/releases)
+[![Issues Badge](https://img.shields.io/github/issues/martinet101/ElevenCalendar?style=for-the-badge)](https://github.com/martinet101/ElevenCalendar/issues)
+[![Closed Issues Badge](https://img.shields.io/github/issues-closed/martinet101/ElevenCalendar?color=%238256d0&style=for-the-badge)](https://github.com/martinet101/ElevenCalendar/issues?q=is%3Aissue+is%3Aclosed)
 
-ElevenClock is **free software** (under [Apache License 2.0](https://github.com/marticliment/ElevenClock/blob/main/LICENSE)) that lets you put a **customizable clock on your Windows 11 taskbar(s)**. When Microsoft created the Windows 11 clock, they removed the ability to make it customizable, and to show it on multiple displays. You can customize ElevenClock however you wish — from adding seconds, to changing its color scheme — __and__ it appears on all the displays
+ElevenCalendar is **free software** (under [Apache License 2.0](https://github.com/marticliment/ElevenCalendar/blob/main/LICENSE)) that lets you put a **customizable clock on your Windows 11 taskbar(s)**. When Microsoft created the Windows 11 clock, they removed the ability to make it customizable, and to show it on multiple displays. You can customize ElevenCalendar however you wish — from adding seconds, to changing its color scheme — __and__ it appears on all the displays
 connected to your PC.
 You can choose to show or hide the clock with full-screen apps, and what happens when you click, double-click or middle-click it.
 Do you want a clock (or two clocks) on each of your displays? You can have them, and **customize them independently**, or leave them looking like the Windows’ clock... It’s your choice.
-ElevenClock is millisecond-accurate, auto-synced with Internet Time... You can even set it to different time zones.
+ElevenCalendar is millisecond-accurate, auto-synced with Internet Time... You can even set it to different time zones.
 
-**This is ElevenClock's official repository. If you are searching ElevenClock's homepage, please refer to [https://www.marticliment.com/elevenclock/](https://www.marticliment.com/elevenclock/)**
+**This is ElevenCalendar's official repository. If you are searching ElevenCalendar's homepage, please refer to [https://www.marticliment.com/elevencalendar/](https://www.marticliment.com/elevencalendar/)**
 
 ## Table of contents
- - **[ElevenClock Homepage](https://www.marticliment.com/elevenclock/)**
+ - **[ElevenCalendar Homepage](https://www.marticliment.com/elevencalendar/)**
  - [Table of contents](#table-of-contents)
  - [Installation](#fast-installation)
  - [Support the developer](#support-the-developer)
  - [Features](#features)
- - [Translating ElevenClock][translating link]
+ - [Translating ElevenCalendar][translating link]
    - [Currently supported languages](#currently-supported-languages)
  - [Screenshots](#screenshots)
  - [Frequently Asked Questions](#frequently-asked-questions)
@@ -27,23 +27,23 @@ ElevenClock is millisecond-accurate, auto-synced with Internet Time... You can e
 
 ## Microsoft store installation:
 
-[<img alt="alt_text" width="240px" src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Get_it_from_Microsoft_Badge.svg" href=""/>](https://marticliment.com/redirect/?elevenclockstore)  
+[<img alt="alt_text" width="240px" src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Get_it_from_Microsoft_Badge.svg" href=""/>](https://marticliment.com/redirect/?elevencalendarstore)
 <br>
-Alternatively, you can install ElevenClock from Winget or Chocolatey:
+Alternatively, you can install ElevenCalendar from Winget or Chocolatey:
 ```powershell
-winget install ElevenClock --source winget
+winget install ElevenCalendar --source winget
 ```
 ```powershell
-choco install elevenclock
+choco install elevencalendar
 ```
 <br>
 
-You can also download ElevenClock from its [homepage](https://www.marticliment.com/elevenclock/) or from [GitHub releases](https://github.com/marticliment/ElevenClock/releases/latest)
-(See the [WIKI](https://github.com/marticliment/ElevenClock/wiki#elevenclock-installation) for more information)
+You can also download ElevenCalendar from its [homepage](https://www.marticliment.com/elevencalendar/) or from [GitHub releases](https://github.com/marticliment/ElevenCalendar/releases/latest)
+(See the [WIKI](https://github.com/marticliment/ElevenCalendar/wiki#elevencalendar-installation) for more information)
 
 ## Support the developer
 <a href='https://ko-fi.com/martinet101' target='_blank'><img style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' />
- 
+
 ## Features
 
 - **Custom time/date format** – Add seconds and day of the week, or hide the date and show only
@@ -55,10 +55,10 @@ clock and put one on each side of your taskbar, or anywhere you wish.
 - **Custom behaviour** – Keep the clock visible over full-screen windows, so you always know what
 time it is. Change what happens when you click, double-click or middle-click it.
 - **Auto-sync with Internet time**
-- **Multi-monitor support** – Each clock is individually customizable. 
- 
-## Translating ElevenClock to other languages
-In order to translate ElevenClock to other languages or to update an old translation, please see [Translating ElevenClock - ElevenClock Wiki][translating link] for more info.
+- **Multi-monitor support** – Each clock is individually customizable.
+
+## Translating ElevenCalendar to other languages
+In order to translate ElevenCalendar to other languages or to update an old translation, please see [Translating ElevenCalendar - ElevenCalendar Wiki][translating link] for more info.
 
 
 ### Currently Supported languages
@@ -112,26 +112,26 @@ Last updated: Sat Mar  8 00:55:42 2025
 
 
 ## Contributors
- ElevenClock wouldn't have been possible with all the help from every single contributor. From the person who fixed a typo to the person who improved half of the code, ElevenClock wouldn't have been possible without you :)<br><br>
+ ElevenCalendar wouldn't have been possible with all the help from every single contributor. From the person who fixed a typo to the person who improved half of the code, ElevenCalendar wouldn't have been possible without you :)<br><br>
 
 ### Contributors list
- [![My dear contributors](https://contrib.rocks/image?repo=martinet101/ElevenClock)](https://github.com/martinet101/ElevenClock/graphs/contributors)
+ [![My dear contributors](https://contrib.rocks/image?repo=martinet101/ElevenCalendar)](https://github.com/martinet101/ElevenCalendar/graphs/contributors)
 
 ## The icon:
-ElevenClock's icon is a collaboration with [Xavier Delugo](https://www.instagram.com/xdelugo/)
+ElevenCalendar's icon is a collaboration with [Xavier Delugo](https://www.instagram.com/xdelugo/)
 
 ## Screenshots
 
-ElevenClock's promo media
+ElevenCalendar's promo media
 
-![](https://github.com/martinet101/ElevenClock/blob/main/media/img1.webp?raw=true)
-![](https://github.com/martinet101/ElevenClock/blob/main/media/img2.webp?raw=true)
-![](https://github.com/martinet101/ElevenClock/blob/main/media/img3.webp?raw=true)
-![](https://github.com/martinet101/ElevenClock/blob/main/media/img4.webp?raw=true)
-![](https://github.com/martinet101/ElevenClock/blob/main/media/img5.webp?raw=true)
-![](https://github.com/martinet101/ElevenClock/blob/main/media/img6.webp?raw=true)
-![](https://github.com/martinet101/ElevenClock/blob/main/media/img7.webp?raw=true)
-![](https://github.com/martinet101/ElevenClock/blob/main/media/img8.webp?raw=true)
+![](https://github.com/martinet101/ElevenCalendar/blob/main/media/img1.webp?raw=true)
+![](https://github.com/martinet101/ElevenCalendar/blob/main/media/img2.webp?raw=true)
+![](https://github.com/martinet101/ElevenCalendar/blob/main/media/img3.webp?raw=true)
+![](https://github.com/martinet101/ElevenCalendar/blob/main/media/img4.webp?raw=true)
+![](https://github.com/martinet101/ElevenCalendar/blob/main/media/img5.webp?raw=true)
+![](https://github.com/martinet101/ElevenCalendar/blob/main/media/img6.webp?raw=true)
+![](https://github.com/martinet101/ElevenCalendar/blob/main/media/img7.webp?raw=true)
+![](https://github.com/martinet101/ElevenCalendar/blob/main/media/img8.webp?raw=true)
 
 <!--
 ### Settings window screenshots
@@ -143,35 +143,35 @@ ElevenClock's promo media
 
 ## Frequently asked questions
 
-**Q: The clock shows over fullscreen**  
+**Q: The clock shows over fullscreen**
 A: Enable fullscreen hiding in settings
 #
-**Q: The clock shows over RDP sessions**  
+**Q: The clock shows over RDP sessions**
 A: Enable RDP hiding in settings (it may consume more CPU)
 #
-**Q: Can ElevenClock be in my language?**  
+**Q: Can ElevenCalendar be in my language?**
 A: Yes, just take a look at [TRANSLATION.md][translating link]
 #
-**Q: My antivirus is telling me that ElevenClock is a virus/My antivirus is uninstalling ElevenClock/My browser is blocking ElevenClock download**  
-A: A common reason apps (i.e., executables) get blocked and/or detected as a virus — even when there's nothing malicious about them, like in the case of ElevenClock — is because they're not being used by a relatively large amount of people.
+**Q: My antivirus is telling me that ElevenCalendar is a virus/My antivirus is uninstalling ElevenCalendar/My browser is blocking ElevenCalendar download**
+A: A common reason apps (i.e., executables) get blocked and/or detected as a virus — even when there's nothing malicious about them, like in the case of ElevenCalendar — is because they're not being used by a relatively large amount of people.
 
 Combine that with the fact that you might be downloading something that was recently released, and simply blocking unknown apps is in many cases a good precaution to take in order to prevent actual malware.
 
-Since ElevenClock is open source and safe to use, simply whitelist the app in the settings of your antivirus/browser.
+Since ElevenCalendar is open source and safe to use, simply whitelist the app in the settings of your antivirus/browser.
 #
-**Q: The clock shows seconds when the "Show Seconds" settings is disabled**  
+**Q: The clock shows seconds when the "Show Seconds" settings is disabled**
 A: Check that you don't have seconds set in your regional settings and disable seconds following this [article's instructions](https://www.howtogeek.com/325096/how-to-make-windows-10s-taskbar-clock-display-seconds/) (Other guides might not work)
 #
-**Q: ElevenClock does not show the correct time zone when time zone is changed**  
-A: Just restart ElevenClock (Right-click clock -> Restart ElevenClock)
+**Q: ElevenCalendar does not show the correct time zone when time zone is changed**
+A: Just restart ElevenCalendar (Right-click clock -> Restart ElevenCalendar)
 #
-**Q: The main clock does not get modified when enabling seconds, etc.**  
-A: ElevenClock can't modify or update  the main clock due to Windows 11's restrictions.
+**Q: The main clock does not get modified when enabling seconds, etc.**
+A: ElevenCalendar can't modify or update  the main clock due to Windows 11's restrictions.
 
 
 ## Legacy Installation
 
-See the wiki: https://github.com/martinet101/ElevenClock/wiki#elevenclock-installation
+See the wiki: https://github.com/martinet101/ElevenCalendar/wiki#elevencalendar-installation
 
 
-[translating link]: https://github.com/martinet101/ElevenClock/wiki#translating-elevenclock
+[translating link]: https://github.com/martinet101/ElevenCalendar/wiki#translating-elevencalendar

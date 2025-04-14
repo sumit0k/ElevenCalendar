@@ -1,14 +1,14 @@
+from lang_tools import *
+from versions import versionName
 import sys
 import hashlib
 import os
 from os.path import exists
 
-os.chdir(os.path.dirname(__file__) + "/..") # move to root project
+os.chdir(os.path.dirname(__file__) + "/..")  # move to root project
 
-sys.path.append("elevenclock")
-sys.path.append("elevenclock/lang")
-from versions import versionName
-from lang_tools import *
+sys.path.append("elevencalendar")
+sys.path.append("elevencalendar/lang")
 
 
 # generate list of translations
@@ -19,13 +19,14 @@ readmeLangs = getMarkdownSupportLangs()
 sha256_hash = hashlib.sha256()
 checksum = "missing"
 shafiles = [
-    "ElevenClock.Installer.exe",
-    "ElevenClock.exe",
+    "ElevenCalendar.Installer.exe",
+    "ElevenCalendar.exe",
 ]
 for filename in shafiles:
-    if (not exists(filename)): continue
+    if (not exists(filename)):
+        continue
     f = open(filename, "rb")
-    for byte_block in iter(lambda: f.read(4096),b""):
+    for byte_block in iter(lambda: f.read(4096), b""):
         sha256_hash.update(byte_block)
     checksum = sha256_hash.hexdigest()
     f.close()
@@ -34,7 +35,7 @@ for filename in shafiles:
 
 # output
 release = f"""
-[![Downloads@{versionName}](https://img.shields.io/github/downloads/martinet101/ElevenClock/{versionName}/total?style=for-the-badge)](https://github.com/martinet101/ElevenClock/releases/download/{versionName}/ElevenClock.Installer.exe)
+[![Downloads@{versionName}](https://img.shields.io/github/downloads/martinet101/ElevenCalendar/{versionName}/total?style=for-the-badge)](https://github.com/martinet101/ElevenCalendar/releases/download/{versionName}/ElevenCalendar.Installer.exe)
 
 # Changelog:
 *

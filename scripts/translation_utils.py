@@ -4,7 +4,7 @@ import re
 
 import tolgee_requests
 
-project_dir = "elevenclock"
+project_dir = "elevencalendar"
 root_dir = os.path.join(os.path.dirname(__file__), "..")
 os.chdir(os.path.join(root_dir, project_dir))
 
@@ -34,25 +34,27 @@ def get_all_strings():
             with open(os.path.join(dirpath, file), "r", encoding="utf-8") as f:
                 matches: list[str] = re.findall(regex, f.read())
                 for match in matches:
-                    translation_strings.append(match.encode('raw_unicode_escape').decode('unicode_escape'))
+                    translation_strings.append(match.encode(
+                        'raw_unicode_escape').decode('unicode_escape'))
 
-    translation_strings = list(set(translation_strings)) # uniq
-    translation_strings.sort(key=lambda x: (remove_special_chars(x.lower()), x))
+    translation_strings = list(set(translation_strings))  # uniq
+    translation_strings.sort(key=lambda x: (
+        remove_special_chars(x.lower()), x))
     return translation_strings
 
 
-def get_all_translations(lang = "en"):
+def get_all_translations(lang="en"):
     with open(f"lang/lang_{lang}.json", "r", encoding="utf-8") as f:
         lang_strings: dict[str, str] = json.load(f)
     return lang_strings
 
 
-def get_all_translations_online(lang = "en") -> dict[str, str]:
+def get_all_translations_online(lang="en") -> dict[str, str]:
     response = tolgee_requests.export(zip=False, langs=["en"])
     return json.loads(response.text)
 
 
-def compare_strings(online = False):
+def compare_strings(online=False):
     not_used: list[str] = []
     translation_obj: dict[str, str] = {}
     lang_strings: dict[str, str] = {}

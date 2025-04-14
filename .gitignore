@@ -1,16 +1,16 @@
 bug.png
-ElevenClock.exe
-elevenclock_bin/
-ElevenClockBin/
-elevenclock\__init__.spec
-elevenclock\lang\__pycache__\*
+ElevenCalendar.exe
+elevencalendar_bin/
+ElevenCalendarBin/
+elevencalendar\__init__.spec
+elevencalendar\lang\__pycache__\*
 *.pyc
 *.pyo
 __init__
-ElevenClock.zip
+ElevenCalendar.zip
 *.code-workspace
-elevenclock/.vscode/launch.json
-elevenclock/lang/lang_backup*
+elevencalendar/.vscode/launch.json
+elevencalendar/lang/lang_backup*
 
 # generate_release.py
 RELEASE.md
@@ -18,16 +18,17 @@ RELEASE.md
 # Virtual environments
 venv/
 env/
+eleven/
 
 # Intellij Cache and Settings folder
 .idea/
-elevenclock.py
+elevencalendar.py
 compile.py
 build_BETA.bat
 APIKEY.txt
-ElevenClock.Installer.exe
+ElevenCalendar.Installer.exe
 __init__.exe
-ElevenClock.Installer.exe.zip
+ElevenCalendar.Installer.exe.zip
 .vscode/launch.json
 .vs/
 scripts/APIKEY.txt

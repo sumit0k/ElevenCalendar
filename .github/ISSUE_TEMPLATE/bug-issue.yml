@@ -11,11 +11,11 @@ body:
       options:
         - label: I have searched for my issue and not found a work-in-progress/duplicate/resolved issue.
           required: true
-        - label: I have tested that this issue has not been fixed in the latest [(beta or stable) release](https://github.com/marticliment/ElevenClock/releases/).
+        - label: I have tested that this issue has not been fixed in the latest [(beta or stable) release](https://github.com/marticliment/ElevenCalendar/releases/).
           required: true
-        - label: I have checked the [FAQ](https://github.com/marticliment/ElevenClock#frequently-asked-questions) section for solutions.
+        - label: I have checked the [FAQ](https://github.com/marticliment/ElevenCalendar#frequently-asked-questions) section for solutions.
           required: true
-        - label: This issue is about a bug (if it is not, please use the [correct template](https://github.com/marticliment/ElevenClock/issues/new/choose)).
+        - label: This issue is about a bug (if it is not, please use the [correct template](https://github.com/marticliment/ElevenCalendar/issues/new/choose)).
           required: true
   - type: textarea
     attributes:
@@ -31,9 +31,9 @@ body:
       required: false
   - type: textarea
     attributes:
-      label: ElevenClock Log
+      label: ElevenCalendar Log
       render: "text"
-      placeholder: Paste here your ElevenClock log. Right-click a clock -> ElevenClock Settinfgs -> Debbuging information -> Show log.
+      placeholder: Paste here your ElevenCalendar log. Right-click a clock -> ElevenCalendar Settinfgs -> Debbuging information -> Show log.
     validations:
       required: true
   - type: textarea

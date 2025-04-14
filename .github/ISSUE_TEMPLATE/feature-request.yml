@@ -1,5 +1,5 @@
-name: '💡 Propose a new feature'
-description: Propose a new feature that could be useful in ElevenClock.
+name: "💡 Propose a new feature"
+description: Propose a new feature that could be useful in ElevenCalendar.
 title: "[FEATURE REQUEST] (Enter your description here)"
 labels: ["new-feature", "triage"]
 assignees: marticliment
@@ -11,7 +11,7 @@ body:
       options:
         - label: I have searched for my feature proposal and not found a work-in-progress/duplicate/resolved/discarded issue.
           required: true
-        - label: This proposal is a completely new feature. If you want to suggest an improvement or an enhancement, please use [this template](https://github.com/marticliment/ElevenClock/issues/new?assignees=marticliment&labels=enhancement&projects=&template=enhancement-improvement.yml&title=%5BENHANCEMENT%5D+%28Enter+your+description+here%29).
+        - label: This proposal is a completely new feature. If you want to suggest an improvement or an enhancement, please use [this template](https://github.com/marticliment/ElevenCalendar/issues/new?assignees=marticliment&labels=enhancement&projects=&template=enhancement-improvement.yml&title=%5BENHANCEMENT%5D+%28Enter+your+description+here%29).
           required: true
   - type: textarea
     attributes:
