@@ -280,6 +280,7 @@ try:
             closeClocks()
             loadClocks()
             setSettings("ReloadInternetTime", True, thread=True)
+            setSettings("ReloadCalendar", True, thread=True)
             globals.doCacheHost = True
 
         def isElevenCalendarRunningThread():
@@ -979,10 +980,12 @@ try:
                     self.MainLoop = KillableThread(target=self.mainClockLoop, daemon=True, name=f"Clock[{index}]: Main clock loop")
                     self.InternetTimeLoop = KillableThread(target=self.loadInternetTimeOffset, daemon=True, name=f"Clock[{index}]: Atomic clock sync thread")
                     self.InternetWeatherLoop = KillableThread(target=self.loadInternetWeather, daemon=True, name=f"Clock[{index}]: Weather sync thread")
+                    self.CalendarSyncLoop = KillableThread(target=self.startCalendarSync, daemon=True, name=f"Clock[{index}]: Calendar sync thread")
                     self.TextUpdaterLoop.start()
                     self.MainLoop.start()
                     self.InternetTimeLoop.start()
                     self.InternetWeatherLoop.start()
+                    self.CalendarSyncLoop.start()
 
                     self.show()
                     self.raise_()
@@ -1521,6 +1524,35 @@ try:
                         self.internetWeather = 0
                         time.sleep(5)
 
+            def startCalendarSync(self):
+                """Start the periodic sync for Google Calendar events."""
+                while shiboken.isValid(self):
+                    self.fetchEvents()
+                    for i in range(getint(self.getSettingsValue("GoogleCalendarSyncFrequency"), 3600)):
+                            time.sleep(1)
+                            if getSettings("ReloadCalendar"):
+                                setSettings("ReloadCalendar", False, thread=True)
+                                break
+
+            def fetchEvents(self):
+                self.googleCalendarAPI = GoogleCalendarAPI()
+                self.googleCalendarAPI.authenticate()
+
+                if not hasattr(self, 'googleCalendarAPI') or not self.googleCalendarAPI.service:
+                    print("Google Calendar API is not initialized.")
+                    return
+
+                calendarId = self.getSettingsValue("GoogleCalendarId")
+                if not calendarId:
+                    print("No calendar selected for syncing.")
+                    return
+
+                timeMin = datetime.datetime.now(timezone.utc).isoformat()
+                timeMax = (datetime.datetime.now(timezone.utc) + timedelta(days=5)).isoformat()
+
+                events = self.googleCalendarAPI.get_events(calendarId, timeMin, timeMax)
+                print(f"Events for calendar {calendarId}: {events}")
+
             def setSettings(self, s: str, v: bool, r: bool = True, thread = False):
                 setSettings(s, v, r, thread, env=self.settingsEnvironment)
 
@@ -2057,5 +2089,5 @@ except Exception as e:
     traceback_info += str(type(e))
     traceback_info += ": "
     traceback_info += str(e)
-    webbrowser.open(("https://www.marticliment.com/error-report/?appName=ElevenCalendar&errorBody="+os_info.replace('\n', '{l}').replace(' ', '{s}')+"{l}{l}{l}{l}ElevenCalendar Log:{l}"+str("\n\n\n\n"+traceback_info).replace('\n', '{l}').replace(' ', '{s}')).replace("#", "|=|"))
+    # webbrowser.open(("https://www.marticliment.com/error-report/?appName=ElevenCalendar&errorBody="+os_info.replace('\n', '{l}').replace(' ', '{s}')+"{l}{l}{l}{l}ElevenCalendar Log:{l}"+str("\n\n\n\n"+traceback_info).replace('\n', '{l}').replace(' ', '{s}')).replace("#", "|=|"))
     print(traceback_info)

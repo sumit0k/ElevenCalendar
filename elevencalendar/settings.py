@@ -12,6 +12,8 @@ import time
 from urllib.request import urlopen
 from PySide6 import QtGui
 from PySide6 import QtCore
+from datetime import datetime, timedelta, timezone
+from threading import Timer
 
 try:
     import psutil
@@ -482,6 +484,44 @@ class SettingsUI(QMainWindow):
         self.fontPrefs.stateChanged.connect(lambda i: self.setSettings("UseCustomFont", bool(i)))
         self.fontPrefs.valueChanged.connect(lambda v: self.setSettingsValue("UseCustomFont", v))
         self.clockAppearanceTitle.addWidget(self.fontPrefs)
+
+        #region Google Calendar Integration
+        self.googleCalendarTitle = QSettingsTitle(_("Google Calendar Integration:"), getPath(f"calendar_{self.iconMode}.png"), _("Connect to Google Calendar, select calendars to sync, and set sync frequency"))
+        layout.addWidget(self.googleCalendarTitle)
+
+        self.connectGoogleAccountButton = QSettingsButton(_("Connect to Google Calendar"), _("Connect"))
+        self.connectGoogleAccountButton.clicked.connect(self.connectGoogleAccount)
+        self.googleCalendarTitle.addWidget(self.connectGoogleAccountButton)
+
+        self.connectedAccountLabel = QLabel(_("No account connected"))
+        self.googleCalendarTitle.addWidget(self.connectedAccountLabel)
+
+        self.calendarList = QSettingsComboBox(_("Select a calendar to sync"))
+        self.calendarList.valueChanged.connect(lambda v: (self.setSettingsValue("GoogleCalendarId", actions[v]), self.setSettings("ReloadCalendar", True)))
+        self.googleCalendarTitle.addWidget(self.calendarList)
+
+
+        self.calendarSyncTime = QSettingsComboBox(_("Calendar sync frequency"))
+        actions = {
+            _("10 minutes"): "600",
+            _("30 minutes"): "1800",
+            _("1 hour"): "3600",
+            _("2 hours"): "7200",
+            _("4 hours"): "14400",
+            _("10 hours"): "36000",
+            _("24 hours"): "86400",
+        }
+        self.calendarSyncTime.loadItems(actions.keys())
+        self.calendarSyncTime.setEnabled(True)
+        try:
+            actions = list(actions.values())
+            current = self.getSettingsValue("GoogleCalendarSyncFrequency")
+            self.calendarSyncTime.combobox.setCurrentIndex(actions.index(current) if current in actions else 0)
+        except ValueError:
+            pass
+        self.calendarSyncTime.valueChanged.connect(lambda v: (self.setSettingsValue("GoogleCalendarSyncFrequency", actions[v]), self.setSettings("ReloadCalendar", True)))
+        self.googleCalendarTitle.addWidget(self.calendarSyncTime)
+        #endregion
 
         self.fontSize = QSettingsSizeBoxComboBox(_("Use a custom font size"))
         self.fontSize.setStyleSheet("border-top: 0px solid transparent;")
@@ -1002,6 +1042,19 @@ class SettingsUI(QMainWindow):
             self.setWindowTitle(""+_("ElevenCalendar Settings"))
             self.setWindowIcon(QIcon(getPath("icon.ico")))
 
+    def connectGoogleAccount(self):
+        """Handle the Google Calendar account connection."""
+        self.googleCalendarAPI = tools.GoogleCalendarAPI()
+        self.googleCalendarAPI.authenticate()
+
+        # Fetch and display the connected account's calendars
+        calendars = self.googleCalendarAPI.get_calendars()
+        if calendars:
+            self.connectedAccountLabel.setText(_("Connected to Google Calendar"))
+            self.calendarList.loadItems([calendar['id'] for calendar in calendars])
+        else:
+            self.connectedAccountLabel.setText(_("No calendars found"))
+
     def filter(self, query: str):
         widgets: list[QSettingsTitle] = (
             self.generalSettingsTitle,
@@ -1015,7 +1068,8 @@ class SettingsUI(QMainWindow):
             self.toolTipAppearanceTitle,
             self.internetTimeTitle,
             self.aboutTitle,
-            self.debbuggingTitle
+            self.debbuggingTitle,
+            self.googleCalendarTitle
         )
         if query != "":
             self.announcements.hide()
@@ -1165,6 +1219,7 @@ class SettingsUI(QMainWindow):
                 self.toolTipAppearanceTitle.setIcon(QIcon(getPath(f"tooltip_{self.iconMode}.png")))
                 self.internetTimeTitle.setIcon(QIcon(getPath(f"internet_{self.iconMode}.png")))
                 self.clockAppearanceTitle.setIcon(QIcon(getPath(f"appearance_{self.iconMode}.png")))
+                self.googleCalendarTitle.setIcon(QIcon(getPath(f"calendar_{self.iconMode}.png")))
                 self.setStyleSheet(f"""
                     *::disabled {{
                         color: grey;
@@ -1694,6 +1749,7 @@ class SettingsUI(QMainWindow):
                 self.toolTipAppearanceTitle.setIcon(QIcon(getPath(f"tooltip_{self.iconMode}.png")))
                 self.internetTimeTitle.setIcon(QIcon(getPath(f"internet_{self.iconMode}.png")))
                 self.clockAppearanceTitle.setIcon(QIcon(getPath(f"appearance_{self.iconMode}.png")))
+                self.googleCalendarTitle.setIcon(QIcon(getPath(f"calendar_{self.iconMode}.png")))
                 self.setStyleSheet(f"""
                     *::disabled {{
                         color: grey;
@@ -2962,6 +3018,7 @@ class QSettingsCheckboxColorDialog(QSettingsCheckBox):
         self.checkbox.setFixedHeight(30)
         self.button.setFixedHeight(30)
         self.setFixedHeight(50)
+        self.button.setFixedHeight(30)
         self.checkbox.move((70), 10)
 
         self.setLayout(QHBoxLayout())
@@ -3435,6 +3492,7 @@ class CustomSettings(SettingsUI):
         self.clockFeaturesTitle.setEnabled(v)
         self.clockPosTitle.setEnabled(v)
         self.clockAppearanceTitle.setEnabled(v)
+        self.googleCalendarTitle.setEnabled(v)
         self.dateTimeTitle.setEnabled(v)
         self.internetTimeTitle.setEnabled(v)
         self.toolTipAppearanceTitle.setEnabled(v)

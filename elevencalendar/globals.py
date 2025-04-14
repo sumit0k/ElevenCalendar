@@ -118,6 +118,8 @@ settingsList: list[str] = [
     "EnableInternetTime",
     "AtomicClockURL",
     "AtomicClockSyncInterval",
+    "GoogleCalendarSyncFrequency",
+    "GoogleCalendarId",
     "TooltipUseCustomFont",
     "TooltipUseCustomFontSize",
     "TooltipUseCustomFontColor",

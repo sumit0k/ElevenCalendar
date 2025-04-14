@@ -36,6 +36,13 @@ import win32api
 import win32con
 import re
 
+import os
+import pickle
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+from google.auth.transport.requests import Request
+
 isMoment4 = False
 
 
@@ -922,6 +929,84 @@ def updateLangFile(file: str):
 
 def textToClipboard(text: str):
     globals.app.clipboard().setText(text.strip())
+
+class GoogleCalendarAPI:
+    SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
+
+    def __init__(self):
+        self.credentials = None
+        self.service = None
+
+    def authenticate(self):
+        """Authenticate the user and initialize the Google Calendar API service."""
+        try:
+            client_config = {
+                "installed": {
+                    "client_id": "YOUR_CLIENT_ID",
+                    "project_id": "YOUR_PROJECT_ID",
+                    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                    "token_uri": "https://oauth2.googleapis.com/token",
+                    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                    "client_secret": "YOUR_CLIENT_SECRET",
+                    "redirect_uris": ["http://localhost"]
+                }
+            }
+            # Check if token.pickle exists
+            if os.path.exists('token.pickle'):
+                with open('token.pickle', 'rb') as token:
+                    self.credentials = pickle.load(token)
+
+            # If there are no valid credentials, authenticate the user
+            if not self.credentials or not self.credentials.valid:
+                if self.credentials and self.credentials.expired and self.credentials.refresh_token:
+                    self.credentials.refresh(Request())
+                else:
+                    flow = InstalledAppFlow.from_client_config(client_config, self.SCOPES)  # Add your client secret file here
+                    self.credentials = flow.run_local_server(port=0)
+
+                # Save the credentials for future use
+                with open('token.pickle', 'wb') as token:
+                    pickle.dump(self.credentials, token)
+
+            self.service = build('calendar', 'v3', credentials=self.credentials)
+        except Exception as e:
+            print(f"An error occurred during authentication: {e}")
+
+    def get_calendars(self):
+        """Fetch the list of calendars available for the authenticated user."""
+        try:
+            if not self.service:
+                raise Exception("Google Calendar API service is not initialized.")
+
+            calendars_result = self.service.calendarList().list().execute()
+            calendars = calendars_result.get('items', [])
+
+            return [{
+                'id': calendar['id'],
+                'summary': calendar.get('summary', 'No Title')
+            } for calendar in calendars]
+        except HttpError as error:
+            print(f"An error occurred: {error}")
+            return []
+
+    def get_events(self, calendar_id, time_min, time_max):
+        """Fetch events from a specific calendar within a time range."""
+        try:
+            if not self.service:
+                raise Exception("Google Calendar API service is not initialized.")
+
+            events_result = self.service.events().list(
+                calendarId=calendar_id,
+                timeMin=time_min,
+                timeMax=time_max,
+                singleEvents=True,
+                orderBy='startTime'
+            ).execute()
+
+            return events_result.get('items', [])
+        except HttpError as error:
+            print(f"An error occurred: {error}")
+            return []
 
 t0 = time.time()
 
